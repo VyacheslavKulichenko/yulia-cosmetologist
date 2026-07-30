@@ -12206,5 +12206,262 @@ header.main-header.main-header-prime .header-sticky.active{
 	.footer-copyright-prime{
 		flex-direction: column-reverse;
 		padding: 15px 0;
-	}	
+	}
+}
+
+/* ============================================
+   Video Splash Screen Styles
+   ============================================ */
+
+.video-splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFB6C1 100%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.video-splash-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.video-splash-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.splash-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.splash-video.playing {
+    opacity: 1;
+}
+
+.splash-play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.splash-play-btn {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        0 20px 50px rgba(0, 0, 0, 0.18),
+        0 30px 70px rgba(0, 0, 0, 0.1),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.15),
+        inset 0 5px 15px rgba(255, 255, 255, 0.9),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    animation: breathe 2s ease-in-out infinite;
+}
+
+.splash-play-btn::before {
+    content: '';
+    position: absolute;
+    top: 8%;
+    left: 15%;
+    width: 50%;
+    height: 30%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    filter: blur(8px);
+    pointer-events: none;
+}
+
+.splash-play-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+    background: linear-gradient(145deg, #ffffff 0%, #fafafa 50%, #f0f0f0 100%);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 25px 60px rgba(0, 0, 0, 0.22),
+        0 35px 80px rgba(0, 0, 0, 0.12),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.15),
+        inset 0 5px 15px rgba(255, 255, 255, 0.95),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.splash-play-btn:active {
+    transform: scale(1.02) translateY(2px);
+    background: linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 50%, #e0e0e0 100%);
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.18),
+        inset 0 5px 15px rgba(0, 0, 0, 0.2),
+        inset 0 -3px 10px rgba(255, 255, 255, 0.4);
+}
+
+.splash-play-btn .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-play-btn .play-icon svg {
+    width: 75px;
+    height: 75px;
+    fill: #FF0000;
+    transform: translateX(4px);
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Пульсирующие кольца */
+.play-pulse,
+.play-pulse-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    animation: pulse 2s ease-out infinite;
+}
+
+.play-pulse-2 {
+    animation-delay: 1s;
+}
+
+/* Анимация дыхания кнопки */
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.25),
+            0 20px 50px rgba(0, 0, 0, 0.18),
+            0 30px 70px rgba(0, 0, 0, 0.1),
+            inset 0 -5px 15px rgba(0, 0, 0, 0.15),
+            inset 0 5px 15px rgba(255, 255, 255, 0.9);
+    }
+    50% {
+        transform: scale(1.05) translateY(-3px);
+        box-shadow:
+            0 15px 30px rgba(0, 0, 0, 0.28),
+            0 25px 55px rgba(0, 0, 0, 0.2),
+            0 35px 75px rgba(0, 0, 0, 0.12),
+            inset 0 -5px 15px rgba(0, 0, 0, 0.15),
+            inset 0 5px 15px rgba(255, 255, 255, 0.95);
+    }
+}
+
+/* Анимация пульсирующих колец */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+.splash-play-text {
+    color: #fff;
+    font-size: 42px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    font-family: 'Onest', sans-serif;
+    letter-spacing: 0.5px;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Скрытие оверлея после клика */
+.splash-play-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .splash-play-btn {
+        width: 120px;
+        height: 120px;
+    }
+
+    .splash-play-btn .play-icon svg {
+        width: 65px;
+        height: 65px;
+    }
+
+    .splash-play-text {
+        font-size: 32px;
+        padding: 0 20px;
+    }
+
+    .splash-play-overlay {
+        gap: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-play-btn {
+        width: 110px;
+        height: 110px;
+    }
+
+    .splash-play-btn .play-icon svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .splash-play-text {
+        font-size: 26px;
+    }
+
+    .splash-play-overlay {
+        gap: 30px;
+    }
 }

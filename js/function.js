@@ -433,5 +433,75 @@
 		});
 	}
 	/* Image Coparision JS End */
-	
+
 })(jQuery);
+
+/* ============================================
+   Video Splash Screen Script
+   ============================================ */
+(function() {
+    'use strict';
+
+    // Получаем элементы
+    const splashScreen = document.getElementById('videoSplashScreen');
+    const splashVideo = document.getElementById('splashVideo');
+    const playBtn = document.getElementById('splashPlayBtn');
+    const playOverlay = document.getElementById('splashPlayOverlay');
+
+    // Проверяем наличие элементов
+    if (!splashScreen || !splashVideo || !playBtn || !playOverlay) {
+        return;
+    }
+
+    // Флаг для отслеживания воспроизведения
+    let videoStarted = false;
+
+    // Функция для скрытия splash screen и показа основного контента
+    function hideSplashScreen() {
+        splashScreen.classList.add('fade-out');
+
+        // Удаляем элемент после завершения анимации
+        setTimeout(function() {
+            if (splashScreen && splashScreen.parentNode) {
+                splashScreen.parentNode.removeChild(splashScreen);
+            }
+        }, 800);
+    }
+
+    // Обработчик клика на кнопку Play
+    playBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!videoStarted) {
+            // Показываем видео
+            splashVideo.classList.add('playing');
+
+            // Включаем звук и воспроизводим видео
+            splashVideo.muted = false;
+            splashVideo.currentTime = 0;
+            splashVideo.play().catch(function(error) {
+                console.log('Ошибка воспроизведения:', error);
+                // В случае ошибки переходим к сайту
+                setTimeout(hideSplashScreen, 1000);
+            });
+
+            // Скрываем оверлей с кнопкой
+            playOverlay.classList.add('hidden');
+            videoStarted = true;
+        }
+    });
+
+    // Обработчик события окончания видео
+    splashVideo.addEventListener('ended', function() {
+        hideSplashScreen();
+    });
+
+    // Обработка ошибок загрузки видео
+    splashVideo.addEventListener('error', function(e) {
+        console.error('Ошибка загрузки видео:', e);
+        // В случае ошибки сразу переходим к сайту
+        setTimeout(hideSplashScreen, 2000);
+    });
+
+})();

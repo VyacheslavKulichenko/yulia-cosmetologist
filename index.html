@@ -37,6 +37,29 @@
 </head>
 <body>
 
+    <!-- Video Splash Screen Start -->
+    <div class="video-splash-screen" id="videoSplashScreen">
+        <video id="splashVideo" class="splash-video" muted playsinline>
+            <source src="images/zayka.mp4" type="video/mp4">
+        </video>
+
+        <!-- Play Button Overlay Start -->
+        <div class="splash-play-overlay" id="splashPlayOverlay">
+            <button class="splash-play-btn" id="splashPlayBtn">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+                <div class="play-pulse"></div>
+                <div class="play-pulse-2"></div>
+            </button>
+            <p class="splash-play-text">Юлечка, нажми кнопочку)</p>
+        </div>
+        <!-- Play Button Overlay End -->
+    </div>
+    <!-- Video Splash Screen End -->
+
     <!-- Preloader Start -->
 	<div class="preloader">
 		<div class="loading-container">
